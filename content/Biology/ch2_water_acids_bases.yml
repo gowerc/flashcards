@@ -1,0 +1,194 @@
+SUBJECT: BIO
+TOPIC: BIO01
+
+
+WAB01:
+    question:
+        - With regards to water, define Hydrophilic
+    answer:
+        - | 
+            Where a substance is charged and has a strong enough force to where water 
+            molecules are more attracted to it than other water molecules. This is what 
+            causes substances to become dissolved into water.
+
+
+WAB02:
+    question:
+        - With regards to water, define Hydrophobic
+    answer:
+        - |
+            Where a substance lacks enough charge to break the hydrogen bond of water and 
+            thus the water molecules stick more together than to the substance. This ends 
+            up forcing the substance to stay together and be pushed away from the water 
+            (for example oil) 
+
+
+WAB03:
+    question:
+        - With regards to water, define solvent
+    answer:
+        - A substance that can dissolve other substances
+
+
+WAB04:
+    question:
+        - With regards to water, define solute
+    answer:
+        - A substance which is dissolved within a substance
+
+
+WAB05:
+    question:
+        - With regards to water, define solutions
+    answer:
+        - |
+            A homogenous mixture of a solvent and a solute. A solution of water is also 
+            know as an aqueous solution
+
+
+WAB06:
+    question:
+        - With regards to water, define hydration shell
+    answer:
+        - |
+            Where water molecules cling to a hydrophilic substance forming a shell around it, 
+            these shells then repel each other which is what causes the solute molecules to 
+            be evenly dispersed across the solution.
+
+
+WAB07:
+    question:
+        - With regards to water, define Dissociation
+    answer:
+        - The process in which a molecule breaks apart to form individual ions
+
+
+WAB08:
+    question:
+        - Name 3 key properties of water
+    answer:
+        - The universal solvent due to the hydrogen bond making it the primary solution for most reactions required for life
+        - The hydrogen bond resulting in cohesion and adhesive forces giving way to capillary action
+        - Its high specific heat and heat vaporisation as well as it being less dense than its solid form ice
+
+
+WAB09:
+    question:
+        - With regards to water, define Cohesion
+    answer:
+        - The force of attraction between 2 identical atoms/molecules (in the case of water caused by the hydrogen bond)
+
+
+WAB10:
+    question:
+        - With regards to water, define Adhesion
+    answer:
+        - | 
+            The force of attraction between 2 different atoms/molecules. 
+            In the case of water the adhesion force with glass is stronger than 
+            waters cohesive force.
+
+
+
+WAB11:
+    question:
+        - With regards to water, define Capillary Action
+    answer:
+        - | 
+            The ability for water to rise up a surface due to its adhesion to that surface 
+            until a point where the cohesive force + gravity balance out.
+
+
+
+
+WAB12:
+    question:
+        - What is specific heat,  what is the name for the specific heat of water?
+    answer:
+        - | 
+            Specific heat is the amount of energy required to raise 1g of a substance by 
+            1 degree Celsius.  Water due to its hydrogen bond has a high specific heat 
+            and this value has even been given its own special name of a "calorie"
+
+
+
+WAB13:
+    question:
+        -  With regards to water, describe the process of autoionization 
+    answer:
+        - | 
+            It is where 2 water molecules (h2o) bump into each other in such a way that 1 
+            steals the hydrogen proton from another but leaves behind the corresponding 
+            electron of that hydrogen (as oxygen has a very high electronegativity).  
+            Thus resulting in hydronium and hydroxide.  I.e. it increases the amount of 
+            free hydrogen ions.
+
+
+WAB14:
+    question:
+        - What is the Arrhenius and Bronsted-Lowry definitions of Acids and Bases
+    answer:
+        - Arrhenius
+        - Acid = A molecule that when put in a aqueous solution increases the concentration of hydrogen ions
+        - Base = A molecule that when put in an aqueous solution increases the concentration of Hydroxide [OH] ions
+        - Bronsted-Lowry
+        - Acid = A molecule that likes to donate hydrogen ions
+        - Base = A molecule that likes to receive hydrogen ions
+        
+
+
+
+
+WAB15:
+    question:
+        - Define a Conjugate acid and a Conjugate base 
+    answer:
+        - |
+            A conjugate acid, within the Bronsted–Lowry acid–base theory, is a chemical 
+            compound formed by the reception of a proton (H+) by a base—in other words, 
+            it is a base with a hydrogen ion added to it, as in the reverse reaction it 
+            loses a hydrogen ion. On the other hand, a conjugate base is what is left over 
+            after an acid has donated a proton during a chemical reaction.
+            Hence, a conjugate base is a species formed by the removal of a proton from an
+            acid, as in the reverse reaction it is able to gain a hydrogen ion.
+        - Acid + Base  <->  Conjugate Base + Conjugate Acid
+
+
+
+
+WAB16:
+    question:
+        - What is a mole & pH
+    answer:
+        - |
+            a mole is just a constant number used because the number of atoms in a given quantity 
+            is typically very large. For reference 1 mole = 6.02214076 × 10^23   atom. 
+        - |
+            pH - Let C be the number of loose hydrogen ions in a given solution (which would become)
+            hydrogen + hydroxide in water). Then pH = - log(C) (log to the base 10)
+        - |
+            For water the number of hydroxide molecules  is 1 x 10 ^-7  thus giving a pH of 7.
+            pH  < 7 is considered acidic,  pH > 7 is considered basic or alkali
+
+
+
+
+WAB017:
+    question:
+        - With regards to pH, what is a buffer ? 
+    answer:
+        - |
+            Wiki = A buffer solution (more precisely, pH buffer or hydrogen ion buffer) is an 
+            aqueous solution consisting of a mixture of a weak acid and its conjugate base, or 
+            vice versa. Its pH changes very little when a small amount of strong acid or base 
+            is added to it. Buffer solutions are used as a means of keeping pH at a nearly 
+            constant value in a wide variety of chemical applications. In nature, there are 
+            many systems that use buffering for pH regulation. For example, the bicarbonate 
+            buffering system is used to regulate the pH of blood.
+        - | 
+            A reversible reaction between a acid / base and its corresponding conjugate acid/base 
+            such that a constant pH is maintained as if the pH is raised or lowered the reaction 
+            will occur until it reaches its equilibrium point again. 
+
+
+

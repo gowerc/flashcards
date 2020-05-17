@@ -1,0 +1,110 @@
+
+SUBJECT: BIO
+TOPIC: BIO01
+
+
+CARB01:
+    question:
+        - What is a hydrocarbon, what is a organic molecule
+    answer:
+        - |
+            A hydrocarbon is a molecule consisting of just hydrogen and carbon.  An organic molecule 
+            is any molecule consisting of carbon. 
+
+
+
+
+CARB02:
+    question:
+        - What molecule is CH3^CH3 (using line angle notation)
+    answer:
+        - |
+            Propane C3H8   each unfilled node of a ^  is a Carbon and unless otherwise stated its 
+            valence electrons are filled by hydrogens.  This means here the un-specified point is 
+            filled with a  CH2
+
+
+
+
+CARB03:
+    question:
+        - What do the different hydrocarbon suffixes represent i.e. ethene, ethane & ethyne
+    answer:
+        -  |
+            The suffix represents the largest bond type (-ane = single, -ene = double, -yne = tripper).  
+            Note that double bonds are rigid and are unable to rotate and a triple bond means the (section) 
+            of a molecule forms a linear line. 
+
+
+
+
+CARB04:
+    question:
+        - What do the different hydrocarbon prefixes represent i.e. Propane, Methane & Ethane
+    answer:
+        - The prefix represents the number of carbon present in the molecule. 
+
+
+
+CARB05:
+    question:
+        - What is an Isomer
+    answer:
+        - |
+            Isomers are 2 molecules that have the same chemical formula but are otherwise different 
+            (i.e. different structures or different orientations)
+
+
+
+CARB06:
+    question:
+        - What is the difference between a structural isomer and a stereoisomer
+    answer:
+        - |
+            A structural isomer is an isomer due to a different structure or atomic arrangement 
+            (i.e. atoms are connected in different places).  A stereoisomer  are molecules that 
+            have the same fundamental structure but may be oriented differently (i.e. components 
+            stick out in different directions after a double bond or 2 atoms are on opposite sides 
+            of the molecule and can't be rotated or super imposed onto each other)
+
+
+
+
+CARB07:
+    question:
+        - What is a functional group
+    answer:
+        - |
+            Functional groups typically occur in organic chemistry where a hydrocarbon has 
+            another "bit" attached to it. This "other bit" tend to take common patterns which 
+            we categorise into functional groups.  For example  R-O-H is known as a hydroxyl 
+            group.   These functional groups have similar chemical properties and affect things 
+            such as the acidity as well as providing charge and the ability to dissolve in water. 
+
+
+
+CARB08:
+    question:
+        - What is an amino acid  and what is a alcohol
+    answer:
+        - |
+            Amino acids are hydrocarbon chains with an amino group and a carboxyl group attached.   
+            Alcohols are hydrocarbon chains with a single hydroxyl group attached.  The most common
+            alcohol we consume is ethanol which is a 2 carbon hydrocarbon with a hydroxyl group on the end. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

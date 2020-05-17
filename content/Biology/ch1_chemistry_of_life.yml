@@ -1,0 +1,207 @@
+
+SUBJECT: BIO
+TOPIC: BIO01
+
+
+LIFE01: 
+    question:
+        - With regards to atoms, what is the Atomic number?
+    answer: 
+        - The number of protons in an atom.
+        - |
+            This is what defines is primary characterises and thus what the atom 
+            is named after, all atoms with 6 protons are classed as Carbon
+
+LIFE02:
+    question:
+        -  With regards to atoms, what is the Atomic mass number?
+    answer: 
+        - The number of protons + the number of neutrons.  The "rule of thumb" atomic mass
+
+LIFE03:
+    question:
+        - With regards to atoms, what is the Atomic mass?
+    answer: 
+        - |
+            The actual atomic mass which is very close but not exactly equal to the 
+            atomic mass number
+
+LIFE04:
+    question:
+        - With regards to atoms, Relative atomic mass?
+    answer: 
+        - |
+            The atomic mass of an element averaged across all of its isotopes 
+            by the relative frequency of which they are found on earth
+
+
+LIFE05:
+    question:
+        - What is an Ion ?
+    answer: 
+        - An Ion is a charged particle / atom
+
+LIFE06:
+    question:
+        - What is an Isotope?
+    answer: 
+        - An isotope is the same element but with a different number of neutrons. 
+        - |
+            Carbon-12  is carbon with 6 protons & 6 neutrons whilst Carbon-14 is 
+            carbon with 6 protons and 8 neutrons. 
+
+
+
+LIFE07:
+    question:
+        - Which regards to atoms, what are the Principle energy levels?
+    answer: 
+        - Are the different  shells / states / rings in which electrons exist around an atom. 
+        - Typically each level can contain 2*(n^2) elections. They are filled up from the inside out.
+
+
+LIFE08:
+    question:
+        - Which regards to atoms, what is the valence level?
+    answer: 
+        - The outermost principle energy level to be populated.  Typically only contains up to 8 electrons
+
+
+
+LIFE09:
+    question:
+        - Which regards to atoms, what is the valence electrons?
+    answer: 
+        - The electrons within the valence level
+
+
+LIFE10:
+    question:
+        - Which regards to atoms, what is a Lewis diagram?
+    answer: 
+        - A way of drawing and connecting atoms within a molecule by writing down their elemental symbol 
+        - with a dot for each valence electron and a dash for pairs of shared electrons.
+
+
+LIFE11:
+    question:
+        - Which regards to atoms, Octet Rule?
+    answer: 
+        - | 
+            The general rule that atoms want to fill up  (or lose electrons) their outer shell 
+            in order to have 8 electrons in it in order to be "stable". Atoms with either 1 or 7 electrons tend to be quite destructive
+
+
+
+LIFE12:
+    question:
+        - What's the difference between a molecule and a compound?
+    answer:
+        - Molecules - The binding of 2 or more elements either the same or different  e.g.  O2 (same)  or H2O (different)
+        - Compounds - The binding of 2 or more different elements (e.g.  H2O)
+        - Thus all compounds are molecules  but not all molecules are compounds
+
+
+LIFE13:
+    question:
+        - With regards to atoms, what is a covalent bond?
+    answer:
+        - Where atoms bind together by sharing an electron
+
+
+
+LIFE14:
+    question:
+        - With regards to atoms, what is a Polar Covalent Bond?
+    answer:
+        - |
+            Where atoms bind together by sharing an electron but the electron spends more 
+            time with one atom than the other thus resulting in a difference in charge
+
+
+LIFE15:
+    question:
+        - With regards to atoms, what is a Coordinate Bond?
+    answer:
+        - |
+            A bond formed between 2 atoms sharing electrons however both of the shared 
+            electrons came from only one of the atoms (as opposed to covalent bond where each 
+            atom provides one each) 
+
+
+
+LIFE16:
+    question:
+        - With regards to atoms, what is a Ionic Bond?
+    answer:
+        - Where atoms bind together based upon their difference in charge. 
+        - Occurs when atoms give up electrons entirely to another atom  for example salt = sodium  (1 valence electron) + chloride (7 valence electrons)
+
+
+
+LIFE17:
+    question:
+        - With regards to atoms, what is a Hydrogen Bond?
+    answer:
+        - |
+            Occurs because hydrogen tends to form polar covalent bonds leaving part of the molecule negatively charged and 
+            the other part positively charged,  thus molecule can bind to similar molecules due to the difference in charge. 
+            (Water being the main example H2O resulting in surface tension)
+
+
+
+LIFE18:
+    question:
+        - With regards to atoms, what is a Metallic Bond?
+    answer:
+        - TODO
+
+
+
+LIFE19:
+    question:
+        - What is the sub-shell configuration of neon (hint it has 10 electrons.  (both short and long versions)
+    answer:
+        - "Ne: 1S^2  2S^2  2P^6"
+        - or 
+        - "Ne: [He] 2S^2 2P^6"
+
+
+LIFE20:
+    question:
+        - What is the name of a positively and negatively charged ion.
+    answer:
+        - Cation and Anion respectively 
+
+
+
+LIFE21:
+    question:
+        - What is Electronegativity and how is it measured
+    answer:
+        - Its an atoms ability to hog electrons within a bond and its measured on the Pauling scale
+
+
+LIFE22:
+    question:
+        - What are intermolecular forces and what are the two main types
+    answer:
+        - |
+            Forces that occur between molecules.
+            Dipole - Dipole interactions - Due to electronegativity parts of a molecule are positive, 
+            others negative. Unlike forces attract holding it together (a Hydrogen bond is the most extreme version of this)
+        - |
+            London dispersion forces - due to random movements of electrons there are moments when one side is 
+            negative and another is positive thus forming a very weak bond between molecules
+
+
+
+LIFE23:
+    question:
+        - Define the law of conservation of matter and the equilibrium constant ( in context of chemical reactions)
+    answer:
+        - That no atoms are created or destroyed during a reaction, it must always balance.
+        - |
+            That in a reversible reaction there is a equilibrium value
+            which the reaction will tend towards, adding more of the reactant will mean its 
+            converted into the product until this point is reached.

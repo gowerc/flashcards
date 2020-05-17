@@ -1,0 +1,44 @@
+on:
+    push:
+        branches: 
+            - master
+        paths:
+            - content/**.yml
+
+name: Deploy Content
+
+
+jobs:
+    update-db:
+        
+        env: # Or as an environment variable
+            GOOGLE_AUTH_URL: ${{ secrets.GOOGLE_AUTH_URL }}
+            GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
+            GOOGLE_SERVICE_ACCOUNT_SECRETS: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_SECRETS }}
+            GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+            GOOGLE_REGION: ${{ secrets.GOOGLE_REGION }}
+            GOOGLE_IMAGE: ${{ secrets.GOOGLE_IMAGE }}
+            GOOGLE_EMAIL: ${{ secrets.GOOGLE_EMAIL }}
+            
+        runs-on: [ubuntu-latest]
+        
+        container:
+            image: python:3.7
+            
+        steps:
+            
+            - name: checkout
+              uses: actions/checkout@v2
+              
+            - name: setup requirements
+              run: python -m pip install -r requirements.txt
+              
+            - name: Deploy Content
+              run: python db_update.py 2>&1 | tee /tmp/log-db_update.txt
+
+                
+            - name: Upload log
+              uses: actions/upload-artifact@v2
+              with:
+                name: db_update
+                path: /tmp/log-db_update.txt

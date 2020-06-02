@@ -5,37 +5,33 @@ import yaml
 import support
 
 
-import support.logger
+from .logger import log
 
-log = support.logger.log
 
-class Content(object):
-
+class Document(object):
     def __init__(self, filename):
         self.filename = filename
         self.content_raw = self.read_yaml_file()
-        self.content_validated = self.fix_and_validate()
-        self.subject = self.content_validated.pop("SUBJECT")
-        self.topic = self.content_validated.pop("TOPIC")
-        self.content = {}
-        for ID in self.content_validated.keys():
-            quest = Question(
-                question_id=ID,
-                subject=self.subject,
-                topic=self.topic,
-                question=self.content_validated[ID].get("QUESTION"),
-                answer=self.content_validated[ID].get("ANSWER")
-            )
-            self.content[quest.question_hash] = quest.content
-        self.hashes = self.content.keys()
+        self.content_validated = self.validate_content()
+        self.docid = self.content_validated.pop("DOCID")
+        self.tags = self.content_validated.pop("TAGS")
         
+        self.questions = [
+            Question(
+                question=self.content_validated[QID].get("QUESTION"),
+                answer=self.content_validated[QID].get("ANSWER")
+            )
+            for QID in self.content_validated.keys()
+        ]
+        
+        self.question_hashes = [question.question_hash for question in self.questions]
         
     def read_yaml_file(self):
         """
         Load yaml files but checking to make sure keys aren't duplicated
         """
         with open(self.filename, "r") as fi:
-            pattern = re.compile("^[a-zA-Z]") ## Find all lines that don't start with white space
+            pattern = re.compile("^[a-zA-Z]")  # Find all lines that don't start with white space
             text = fi.readlines()
             text2 = [i for i in text if pattern.findall(i)]
             text3 = [i.replace(" ", "").rstrip().replace(":", "") for i in text2]
@@ -49,47 +45,48 @@ class Content(object):
         with open(self.filename, "r") as fi:
             dat = yaml.safe_load(fi)
         return dat
-    
-
-    def fix_and_validate(self):
+        
+    def validate_content(self):
         """
         Convert keys all to Upper case then ensure they conform to the expected standards
         """
-        di = self.content_raw
-        
-        di2 = {k.upper() : v for k, v in di.items()}
-        subject = di2.pop("SUBJECT")
-        topic = di2.pop("TOPIC")
-        
-        dic_ret = {"SUBJECT" : subject, "TOPIC": topic}
-        
-        for k, v in di2.items():
-            temp = {k2.upper() : v2 for k2, v2 in v.items()}
-            try:
-                question = temp.pop("QUESTION")
-                answer = temp.pop("ANSWER")
-            except KeyError as err:
-                log.error("Question/Answer not found in %s, %s, %s", subject, topic, k)
-                raise err
-            
-            try:
-                assert isinstance(question, list) and isinstance(answer, list)
-            except AssertionError as err:
-                log.exception("Question/answer is not a list, see: %s, %s %s", subject, topic, k)
-                raise err
-            
-            dic_ret[k] = {"QUESTION" : question, "ANSWER": answer}
-        
+        content_raw = self.content_raw
+        content_raw_upper = {key.upper(): value for key, value in content_raw.items()}
+        tags = content_raw_upper.pop("TAGS")
+        docid = content_raw_upper.pop("DOCID")
+        self.assert_doc_meta(docid, tags)
+        dic_ret = {"TAGS": tags, "DOCID": docid}
+        for question_id, question_cont in content_raw_upper.items():
+            temp = {component.upper(): component_value for component, component_value in question_cont.items()}
+            question = temp.get("QUESTION")
+            answer = temp.get("ANSWER")
+            self.assert_question_meta(question, answer, question_id)
+            dic_ret[question_id] = {"QUESTION": question, "ANSWER": answer}
         return dic_ret
-
-
+        
+    def assert_doc_meta(self, docid, tags):
+        try:
+            assert isinstance(tags, list)
+        except AssertionError as e:
+            log.exception("Document Tags are not a list in: \n%s", self.filename)
+            raise e
+            
+        try:
+            assert isinstance(docid, str)
+        except AssertionError as e:
+            log.exception("Document ID is not a string in: \n%s", self.filename)
+            raise e
+        
+    def assert_question_meta(self, question, answer, qid):
+        try:
+            assert isinstance(question, list) and isinstance(answer, list)
+        except AssertionError as err:
+            log.exception("Question/answer is not a list in: \n%s \nQID=%s", self.filename, qid)
+            raise err
 
 
 class Question(object):
-    def __init__(self, question_id, subject, topic, question, answer):
-        self.question_id = question_id
-        self.subject = subject
-        self.topic = topic
+    def __init__(self, question, answer):
         self.question = question
         self.answer = answer
         self.content = self.get_content()
@@ -97,22 +94,37 @@ class Question(object):
     
     def get_content(self):
         cur = {
-            "ID" : self.question_id,
-            "SUBJECT" : self.subject,
-            "TOPIC" : self.topic, 
-            "QUESTION" : self.question,
-            "ANSWER" : self.answer
+            "QUESTION": self.question,
+            "ANSWER": self.answer
         }
         return cur
     
     def get_question_hash(self):
         question_hash = hashlib.md5(
             json.dumps(
-                self.content, 
+                self.content,
                 sort_keys=True
             ).encode("utf-8")
         ).hexdigest()
         return question_hash
+
+
+
+
+
+#####################
+#
+# TODO
+#
+#####################
+
+
+
+
+
+
+
+
 
 
 
@@ -136,7 +148,7 @@ class ContentMeta(object):
         Question-Hash : {
             Score
             Flagged
-        } 
+        }
     """
     def __init__(self, filename):
         self.content_meta = {}
@@ -144,27 +156,24 @@ class ContentMeta(object):
         self.init_content_structure(filename)
         self.init_content_meta()
         
-        
-        
     def init_content_structure(self, filename):
         self.filename = filename
         self.content_structure_raw = self.read_yaml()
         content_structure = {}
         for subject_id, subject_value in self.content_structure_raw.items():
             subject_name = subject_value["NAME"]
-            content_structure[subject_id] = {"NAME" : subject_name,  "TOPICS" : {}}
+            content_structure[subject_id] = {"NAME": subject_name, "TOPICS": {}}
             for topic_id, topic_name in subject_value["TOPICS"].items():
                 topic_hash = hashlib.md5("{}-{}".format(subject_id, topic_id).encode("utf-8")).hexdigest()
-                content_structure[subject_id]["TOPICS"][topic_id] = {"NAME" : topic_name, "TOPIC_HASH" : topic_hash}
+                content_structure[subject_id]["TOPICS"][topic_id] = {"NAME": topic_name, "TOPIC_HASH": topic_hash}
         self.content_structure = content_structure
         
-    def init_content_meta(self):   
+    def init_content_meta(self):
         content_meta = {}
         for subject_obj in self.content_structure.values():
             for topic_obj in subject_obj["TOPICS"].values():
                 content_meta[topic_obj["TOPIC_HASH"]] = {}
         self.content_meta = content_meta
-
     
     def read_yaml(self):
         with open(self.filename, "r") as fi:
@@ -172,8 +181,7 @@ class ContentMeta(object):
         # TODO - Structure assertion checks
         return dat
     
-    
-    def get_topic_hash(self, subject, topic, error_hint = ""):
+    def get_topic_hash(self, subject, topic, error_hint=""):
         
         try:
             assert subject in self.content_structure.keys()
@@ -188,7 +196,6 @@ class ContentMeta(object):
         except AssertionError as err:
             log.exception("Topic %s is not in the subject %s ContentStructure metadata\n%s", topic, subject, error_hint)
             raise err
-        
         return subject_obj["TOPICS"][topic]["TOPIC_HASH"]
         
     def add(self, content):
@@ -206,8 +213,8 @@ class ContentMeta(object):
         topic_hash = self.get_topic_hash(subject, topic, error_hint)
         for question_hash in content.hashes:
             self.content_meta[topic_hash][question_hash] = {
-                "score" : "D",
-                "flagged" : "N"
+                "score": "D",
+                "flagged": "N"
             }
             
     def merge(self, content_meta):
@@ -223,10 +230,10 @@ class ContentMeta(object):
         if old_content == {}:
             return None
         for topic_hash in new_content.keys():
-            if not topic_hash in old_content.keys():
+            if topic_hash not in old_content.keys():
                 continue
             for question_hash in new_content[topic_hash].keys():
-                if not question_hash in old_content[topic_hash].keys():
+                if question_hash not in old_content[topic_hash].keys():
                     continue
                 new_content[topic_hash][question_hash] = old_content[topic_hash][question_hash]
         self.content_meta = new_content
@@ -244,7 +251,7 @@ class ContentMeta(object):
         
         content_meta = self.content_meta
         empty_topic_hashes = [key for key, value in content_meta.items() if value == {}]
-        new_content_meta = {key : value for key, value in content_meta.items() if value != {}}
+        new_content_meta = {key: value for key, value in content_meta.items() if value != {}}
         
         for topic_hash in empty_topic_hashes:
             log.warning("Pruning empty topic: %s", self.topic_hash_lookup(topic_hash))
@@ -255,20 +262,18 @@ class ContentMeta(object):
         for subject_id, subject_value in new_content_structure.items():
             
             new_content_structure[subject_id]["TOPICS"] = {
-                key : value
+                key: value
                 for key, value in subject_value["TOPICS"].items()
                 if value["TOPIC_HASH"] not in empty_topic_hashes
             }
         
-        empty_subject_ids = [ key for key, value in new_content_structure.items() if value["TOPICS"] == {}]
+        empty_subject_ids = [key for key, value in new_content_structure.items() if value["TOPICS"] == {}]
         
         for subject_id in empty_subject_ids:
             log.warning("Removing empty subject: %s", subject_id)
         
-        new_content_structure = {key : value for key, value in new_content_structure.items() if value["TOPICS"] != {}}
+        new_content_structure = {key: value for key, value in new_content_structure.items() if value["TOPICS"] != {}}
         self.content_structure = new_content_structure
-
-
 
 
 class dbmanager(object):
@@ -276,7 +281,7 @@ class dbmanager(object):
     def __init__(self):
         self.db = support.get_db_connection()
         self.key = {
-            "content" : "Content",
+            "content": "Content",
             "meta": "ContentMeta",
             "structure": "ContentStructure"
         }
@@ -308,81 +313,3 @@ class dbmanager(object):
         log.info("Updating item %s into %s ...", id, dbname)
         self.db.collection(dbname).document(id).set(content, merge=True)
         return None
-
-
-######################################
-#
-#
-#  DataBase Structure
-#
-#
-######################################
-
-# ContentMeta
-    # Topic-Hash
-        # Question-Hash : {
-            # Score
-            # Flagged
-        #}
-        # Question-Hash : {
-            # Score
-            # Flagged
-        #} 
-        # Question-Hash : {
-            # Score
-            # Flagged
-        #} 
-    # Topic-Hash
-        # Question-Hash : {
-            # Score
-            # Flagged
-        #}
-        # Question-Hash : {
-            # Score
-            # Flagged
-        #}
-
- 
-
-# ContentStructure
-    # Bio :
-        # name: Biology
-        # topics : {
-            # bio01 : {
-                #name: Introduction to ....
-                #topic-hash: adawdaw
-            # }
-            # bio02 : {
-                #name: something
-                #topic-hash: agisaejfgioes
-            # }
-            # bio03 : {
-                #name: something else
-                #topic-hash: afawfoija
-            # }
-     # TEST :
-        # name: test topic
-        # topics : {
-            # TEST01 : {
-                #name: Introduction to ....
-                #topic-hash: adawdaw
-            # }
-            # TEST02 : {
-                #name: something
-                #topic-hash: agisaejfgioes
-            # }
-
-
-# Content
-    # Question-Hash
-        # id
-        # question
-        # answer
-        # subject
-        # topic
-    # Question-Hash
-        # id
-        # question
-        # answer
-        # subject
-        # topic

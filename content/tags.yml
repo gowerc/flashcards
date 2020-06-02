@@ -1,0 +1,51 @@
+
+
+
+
+
+BIOLOGY:
+    NAME: Biology
+    RANK: 1
+    
+CHEMISTRY:
+    NAME: Chemistry
+    RANK: 1
+
+COURSE:
+    NAME: Course
+    RANK: 1
+
+COMPUTING:
+    NAME: Computing
+    RANK: 1
+
+CODING:
+    NAME: Coding
+    RANK: 1
+
+NETWORK:
+    NAME: Networking
+    RANK: 2
+
+
+
+TEST01:
+    NAME: Test tag - level 1
+    RANK: 1
+
+TEST02: 
+    NAME: Test tag 02 
+    RANK: 2
+
+TEST03: 
+    NAME: Test tag 03 
+    RANK: 3
+
+
+
+
+
+
+
+
+

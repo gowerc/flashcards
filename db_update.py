@@ -1,79 +1,65 @@
-from google.cloud import firestore
-import support
-import support.database as database
 import os
-import importlib
-
+import support.database as database
+import support.contentManager as contentManager
 
 
 dbm = database.dbmanager()
 
 data_folder = "./content/"
 
+tags = contentManager.Tags(data_folder + "tags.yml")
 
-meta = database.ContentMeta( data_folder + "meta.yml")
+# Read in all content
+documents = []
+new_questions = {}
+new_docids = []
 
-
-### Read in all content
-
-content = {}
-
-for  root, dirs, files in os.walk(data_folder):
+for root, dirs, files in os.walk(data_folder):
     for file in files:
-        if file.endswith(".yml") and file != "meta.yml":
-            temp_content = database.Content( root + "/" + file)
-            meta.add(temp_content)
-            for key, value in temp_content.content.items():
-                content[key] = value
+        if file.endswith(".yml") and file != "tags.yml":
+            document = contentManager.Document(root + "/" + file)
+            documents.append(document)
+            tags.add_document(document)
+            new_docids.append(document.docid)
+            new_questions = {**new_questions, **document.content}
 
 
-### Update database Content
+dbm.write_col_item("Meta", "Tags", tags.content)
+dbm.write_col_item("Meta", "Documents", tags.documents)
 
-existing_content = dbm.fetch_col_list("content")
+# Update Questions
+existing_questions = dbm.fetch_col_list("Questions")
 
-for key, value in content.items():
-    if key not in existing_content:
-        dbm.write_col_item("content", key, value)
-
-
-for key in existing_content:
-    if key not in content.keys():
-        dbm.delete_col_item("content", key)
+for question_hash in new_questions.keys():
+    if question_hash not in existing_questions:
+        dbm.write_col_item("Questions", question_hash, new_questions[question_hash])
 
 
+for question_hash in existing_questions:
+    if question_hash not in new_questions.keys():
+        dbm.delete_col_item("Questions", question_hash)
 
 
-### Update database ContentMeta
+# Update Scores
 
-existing_topics = dbm.fetch_col_list("meta")
-existing_topic_meta = { topic : dbm.fetch_col_item("meta", topic) for topic in existing_topics}
+# Extract a list of all existing scores and flatten it (so the dict keys are the question hashes)
+# Update scores to keep the old scores
+old_scores_collection_ids = dbm.fetch_col_list("Scores")
+old_scores_collection = {docid: dbm.fetch_col_item("Scores", docid) for docid in old_scores_collection_ids}
 
-meta.merge(existing_topic_meta)  ## Merge in existing scores
-meta.prune()                     ## Remove unused topics
+old_scores = {}
+for docid in old_scores_collection.keys():
+    for question_hash in old_scores_collection[docid].keys():
+        old_scores[question_hash] = old_scores_collection[docid][question_hash]
 
-content_meta  = meta.content_meta
+for document in documents:
+    document.merge_scores(old_scores)
 
-for key, value in content_meta.items():
-    dbm.write_col_item("meta", key, value)
+for document in documents:
+    docid = document.docid
+    if document.scores != old_scores_collection.get(docid):
+        dbm.write_col_item("Scores", document.docid, document.scores)
 
-
-for topic in existing_topics:
-    if topic not in content_meta.keys():
-        dbm.delete_col_item("meta", topic)
-
-
-### Update database Structure
-
-content_struc  = meta.content_structure
-old_structure = dbm.fetch_col_list("structure")
-
-for key, value in content_struc.items():
-    dbm.write_col_item("structure", key, value)
-
-
-for struc in old_structure:
-    if struc not in content_struc.keys():
-        dbm.delete_col_item("structure", struc)
-
-
-
+for docid in old_scores_collection.keys():
+    if docid not in new_docids:
+        dbm.delete_col_item("Scores", docid)

@@ -8,10 +8,10 @@ __pycache__
 
 venv/
 secrets/
-data/
+content/
 .git/
 .vscode/
 tests/
-
+misc/
 
 .DS_Store

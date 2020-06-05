@@ -9,7 +9,7 @@ class dbmanager(object):
             "Users": "Users",
             "Sessions": "Sessions",
             "Questions": "Questions",
-            "Scores": "Scores",
+            "Documents": "Documents",
             "Meta": "Meta"
         }
     

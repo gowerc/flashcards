@@ -40,5 +40,5 @@ jobs:
             - name: Upload log
               uses: actions/upload-artifact@v2
               with:
-                name: db_update
-                path: /tmp/log-db_update.txt
+                  name: db_update
+                  path: /tmp/log-db_update.txt

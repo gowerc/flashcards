@@ -10,13 +10,7 @@ RUN pip install Flask flask_api numpy gunicorn
 
 
 # Copy local code to the container image.
-ENV GOOGLE_AUTH_URL ""
-ENV GOOGLE_PROJECT_ID ""
-ENV GOOGLE_SERVICE_ACCOUNT_SECRETS ""
-ENV GOOGLE_SERVICE_ACCOUNT ""
-ENV GOOGLE_REGION ""
-ENV GOOGLE_IMAGE ""
-ENV GOOGLE_EMAIL ""
+ENV SECRETS ""
 
 ENV APP_HOME /app
 WORKDIR $APP_HOME

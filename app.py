@@ -1,21 +1,56 @@
-
-import sys
-sys.path.insert(1, './support')
-import support
-
 import flask
+import support
 from flask_api import status
 from functools import wraps
-
 from pprint import pprint
-
 app = flask.Flask(__name__)
-
-
 env_vars = support.get_env_vars() 
-
-
 db = support.get_db_connection()
+
+
+
+
+
+
+
+
+
+
+def triage(f):
+    @wraps(f)
+    def decfun(*args, **kwargs):
+        if not has_session_token():
+            return send_to_login()
+
+        if not is_valid_session_token():
+            return send_to_login()
+        
+        return f()
+    return decfun
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###################################
+#
+#
+#   OLD
+#
+#
+
 
 
 def validate_request(f):

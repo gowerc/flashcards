@@ -12,13 +12,7 @@ jobs:
     update-db:
         
         env: # Or as an environment variable
-            GOOGLE_AUTH_URL: ${{ secrets.GOOGLE_AUTH_URL }}
-            GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
-            GOOGLE_SERVICE_ACCOUNT_SECRETS: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_SECRETS }}
-            GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
-            GOOGLE_REGION: ${{ secrets.GOOGLE_REGION }}
-            GOOGLE_IMAGE: ${{ secrets.GOOGLE_IMAGE }}
-            GOOGLE_EMAIL: ${{ secrets.GOOGLE_EMAIL }}
+            SECRETS: ${{ secrets.SECRETS }}
             
         runs-on: [ubuntu-latest]
         

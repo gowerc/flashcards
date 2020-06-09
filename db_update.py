@@ -44,8 +44,8 @@ for question_hash in existing_questions:
 
 # Extract a list of all existing scores and flatten it (so the dict keys are the question hashes)
 # Update scores to keep the old scores
-old_scores_collection_ids = dbm.fetch_col_list("Scores")
-old_scores_collection = {docid: dbm.fetch_col_item("Scores", docid) for docid in old_scores_collection_ids}
+old_scores_collection_ids = dbm.fetch_col_list("Documents")
+old_scores_collection = {docid: dbm.fetch_col_item("Documents", docid) for docid in old_scores_collection_ids}
 
 old_scores = {}
 for docid in old_scores_collection.keys():
@@ -58,8 +58,8 @@ for document in documents:
 for document in documents:
     docid = document.docid
     if document.scores != old_scores_collection.get(docid):
-        dbm.write_col_item("Scores", document.docid, document.scores)
+        dbm.write_col_item("Documents", document.docid, document.scores)
 
 for docid in old_scores_collection.keys():
     if docid not in new_docids:
-        dbm.delete_col_item("Scores", docid)
+        dbm.delete_col_item("Documents", docid)

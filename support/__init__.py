@@ -9,22 +9,6 @@ from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
 
 
-
- 
-def get_db_connection():
-    ### Setup DB access 
-    env_vars = get_env_vars()
-    db = firestore.Client(
-        project = env_vars["GOOGLE_PROJECT_ID"],
-        credentials= service_account.Credentials.from_service_account_info(env_vars["GOOGLE_SERVICE_ACCOUNT_SECRETS"])
-    ) 
-    return db
-
-
-
-testobj = 1
-
-
 def is_valid_user(token):
     
     env_vars = get_env_vars()
@@ -44,25 +28,20 @@ def is_valid_user(token):
     return True
 
 
-
 def get_env_vars():
-    
+    secrets = json.loads(base64.b64decode(os.getenv("SECRETS")))
     env_vars = {
-        "GOOGLE_AUTH_URL" : os.getenv("GOOGLE_AUTH_URL"),
-        "GOOGLE_PROJECT_ID" : os.getenv("GOOGLE_PROJECT_ID"),
-        "GOOGLE_SERVICE_ACCOUNT_SECRETS" : os.getenv("GOOGLE_SERVICE_ACCOUNT_SECRETS"),
-        "GOOGLE_SERVICE_ACCOUNT" : os.getenv("GOOGLE_SERVICE_ACCOUNT"),
-        "GOOGLE_REGION" : os.getenv("GOOGLE_REGION"),
-        "GOOGLE_IMAGE" : os.getenv("GOOGLE_IMAGE"),
-        "GOOGLE_EMAIL" : os.getenv("GOOGLE_EMAIL")
+        "GOOGLE_AUTH_URL": secrets["GOOGLE_AUTH_URL"],
+        "GOOGLE_PROJECT_ID": secrets["GOOGLE_PROJECT_ID"],
+        "GOOGLE_SERVICE_ACCOUNT_SECRETS": secrets["GOOGLE_SERVICE_ACCOUNT_SECRETS"],
+        "GOOGLE_SERVICE_ACCOUNT": secrets["GOOGLE_SERVICE_ACCOUNT"],
+        "GOOGLE_REGION": secrets["GOOGLE_REGION"],
+        "GOOGLE_IMAGE": secrets["GOOGLE_IMAGE"],
+        "SALT": secrets["SALT"]
     }
     
     for k, v in env_vars.items():
         assert v is not None, "Environment variable {} is missing".format(k)
-    
-    ### Convert account secrets from base64 encoded to dict 
-    temp = base64.b64decode(env_vars["GOOGLE_SERVICE_ACCOUNT_SECRETS"])
-    env_vars["GOOGLE_SERVICE_ACCOUNT_SECRETS"] = json.loads(temp)
     
     return env_vars
 

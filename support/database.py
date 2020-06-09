@@ -1,10 +1,24 @@
-import support
 from .logger import log
+from support import get_env_vars
+from google.cloud import firestore
+from google.oauth2 import service_account
+
+
+def get_db_connection():
+    # Setup DB access
+    env_vars = get_env_vars()
+    db = firestore.Client(
+        project=env_vars["GOOGLE_PROJECT_ID"],
+        credentials=service_account.Credentials.from_service_account_info(
+            env_vars["GOOGLE_SERVICE_ACCOUNT_SECRETS"]
+        )
+    )
+    return db
 
 
 class dbmanager(object):
     def __init__(self):
-        self.db = support.get_db_connection()
+        self.db = get_db_connection()
         self.key = {
             "Users": "Users",
             "Sessions": "Sessions",

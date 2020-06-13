@@ -1,5 +1,5 @@
 import unittest   # The testframework
-import support
+import flashcards
 
 
 
@@ -16,7 +16,7 @@ class Test_TestIncrementDecrement(unittest.TestCase):
         self.assertEqual(increment(3), 4)
     
     def test_obj(self):
-        self.assertEqual(support.testobj, 1)
+        self.assertEqual(flashcards.testobj, 1)
     
     def test_decrement(self):
         self.assertEqual(decrement(3), 2)

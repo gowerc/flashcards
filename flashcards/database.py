@@ -1,16 +1,16 @@
 from .logger import log
-from support import get_env_vars
+from .misc import get_secrets
 from google.cloud import firestore
 from google.oauth2 import service_account
 
 
 def get_db_connection():
     # Setup DB access
-    env_vars = get_env_vars()
+    secrets = get_secrets()
     db = firestore.Client(
-        project=env_vars["GOOGLE_PROJECT_ID"],
+        project=secrets["GOOGLE_PROJECT_ID"],
         credentials=service_account.Credentials.from_service_account_info(
-            env_vars["GOOGLE_SERVICE_ACCOUNT_SECRETS"]
+            secrets["GOOGLE_SERVICE_ACCOUNT_SECRETS"]
         )
     )
     return db
@@ -24,7 +24,7 @@ class dbmanager(object):
             "Sessions": "Sessions",
             "Questions": "Questions",
             "Documents": "Documents",
-            "Meta": "Meta"
+            "Scores": "Scores"
         }
     
     def fetch_col_list(self, col):

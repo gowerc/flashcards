@@ -2,6 +2,8 @@ import re
 import json
 import hashlib
 import yaml
+import base64
+import copy
 from .logger import log
 
 
@@ -46,14 +48,8 @@ class Document(object):
             for QID in self.content_validated.keys()
         ]
         
-        self.question_hashes = [question.question_hash for question in self.questions]
-        
-        self.content = {
-            question.question_hash: question.content for question in self.questions
-        }
-        
-        self.scores = self.get_intial_scores()
-        
+        self.question_hashes = [question.hashid for question in self.questions]
+       
     def validate_content(self):
         """
         Convert keys all to Upper case then ensure they conform to the expected standards
@@ -95,21 +91,6 @@ class Document(object):
         except AssertionError as err:
             log.exception("Question/answer is not a list in: \n%s \nQID=%s", self.filename, qid)
             raise err
-    
-    def get_intial_scores(self):
-        scores = {}
-        for question_hash in self.question_hashes:
-            scores[question_hash] = {
-                "SCORE": "E",
-                "FLAGGED": False
-            }
-        return scores
-    
-    def merge_scores(self, oldscores):
-        for question_hash in self.scores.keys():
-            old_values = oldscores.get(question_hash)
-            if old_values is not None:
-                self.scores[question_hash] = old_values
 
 
 class Question(object):
@@ -117,34 +98,56 @@ class Question(object):
         self.question = question
         self.answer = answer
         self.content = self.get_content()
-        self.question_hash = self.get_question_hash()
+        self.hashid = self.get_question_hash()
+        self.score = "F"
     
     def get_content(self):
         cur = {
             "QUESTION": self.question,
-            "ANSWER": self.answer
+            "ANSWER": self.answer,
+            "FLAGGED": False
         }
         return cur
     
     def get_question_hash(self):
-        question_hash = hashlib.md5(
-            json.dumps(
-                self.content,
-                sort_keys=True
-            ).encode("utf-8")
-        ).hexdigest()
-        return question_hash
+        size = 9
+        content = json.dumps(self.content, sort_keys=True).encode("utf-8")
+        hash_bytes = hashlib.blake2b(content, digest_size=size * 3).digest()
+        question_hash = base64.b64encode(hash_bytes).decode("utf-8")[:size]
+        return question_hash.replace("/", "_").replace("+", "_")
+    
+
+class QuestionStore(object):
+    def __init__(self):
+        self.content = {}
+        
+    def add_document(self, document):
+        try:
+            assert isinstance(document, Document)
+        except AssertionError as e:
+            log.exception("Object is not a document")
+            raise e
+        
+        for question in document.questions:
+            question_hash = question.hashid
+            
+            if question_hash in self.content.keys():
+                log.exception("Duplicate question hashes detected, id = %s", question_hash)
+                raise KeyError("duplicate questions hashes detected")
+            self.content[question.hashid] = question.content
 
 
-class Tags(object):
+class DocumentStore(object):
     def __init__(self, filename):
         self.filename = filename
-        self.content_raw = read_yaml_file(filename)
-        self.content = self.validate_content()
-        self.documents = {}
+        self.meta_data_raw = read_yaml_file(filename)
+        self.meta_data = self.validate_content()
+        self.questions = {}
+        self.tags = {}
+        self.docids = []
     
     def validate_content(self):
-        content_raw_upper = keys_to_upper(self.content_raw)
+        content_raw_upper = keys_to_upper(self.meta_data_raw)
         content = {}
         for tagid in content_raw_upper.keys():
             tagmeta = {}
@@ -179,16 +182,50 @@ class Tags(object):
         
         docid = document.docid
         tags = document.tags
+        question_hashes = document.question_hashes
         
-        if docid in self.documents.keys():
+        if docid in self.docids:
             log.exception("Duplicate document id detected: %s", docid)
             raise KeyError()
         
-        allowed_tags = self.content.keys()
+        allowed_tags = self.meta_data.keys()
         
         for tag in tags:
             if tag not in allowed_tags:
                 log.exception("Unknown tag used in document: %s\n%s", docid, tag)
                 raise KeyError()
         
-        self.documents[docid] = tags
+        self.tags[docid] = tags
+        self.questions[docid] = question_hashes
+        self.docids.append(docid)
+
+
+class Scores(object):
+    def __init__(self, question_hashes):
+        try:
+            assert isinstance(question_hashes, list)
+        except AssertionError as e:
+            log.exception("Scores __init__ question hashes are not a list")
+            raise e
+        self.default_scores = {hashid: "F" for hashid in question_hashes}
+        self.question_hashes = question_hashes
+        self.content = {}
+        
+    def add_user(self, userhash):
+        assert isinstance(userhash, str)
+        if userhash in self.content.keys():
+            log.exception("Duplicate userhash detected, hash = %s", userhash)
+            raise KeyError("Duplicate userhash detected")
+        self.content[userhash] = copy.deepcopy(self.default_scores)
+    
+    def merge_user_scores(self, userhash, scores):
+        assert isinstance(userhash, str)
+        assert isinstance(scores, dict)
+        
+        if userhash not in self.content.keys():
+            log.exception("Userhash does not exist, hash = %s", userhash)
+            raise KeyError("Userhash does not exist")
+        
+        for question_hash, question_score in scores.items():
+            if question_hash in self.question_hashes:
+                self.content[userhash][question_hash] = question_score

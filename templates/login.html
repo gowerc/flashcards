@@ -1,44 +1,37 @@
-{% extends 'core.html' %}
-
-
-{% block header %}
-    <script type="text/javascript" src="{{ url_for('static', filename = 'login.js') }}"></script> 
-{% endblock %}
-
-
-{% block content %}
-
-
-<div id = "sign-in-screen" class="container">
-            
-    <div class="row justify-content-center align-items-center my-5">
+<html>
+    <head>
+        <title>FlashCards</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
-        <div class="col-auto align-self-center">
-            
-            <div id="sign-in-text" class="card text-white bg-warning" style="max-width: 18rem;">
+        <meta name="google-signin-client_id" content="{{ CLIENT_ID }}">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
                 
-                <div class="card-body" id="card-please-sign-in">
-                    <p class="card-text" id="sign-in-text">Please sign in to use the app</p>
-                </div>
-                
-                <div class="card-body" style="display: none;" id="card-unauthorised">
-                    <p class="card-text" id="sign-in-text">Unauthorised User !</p>
-                </div>
-                
-            </div>
-            
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename = 'login.js') }}"></script> 
+
+    </head>
+    <body>
+        
+        <div id="button-signin" class="g-signin2" data-onsuccess="onSignIn" data-theme="Light"></div>
+        
+        <div style="display: none;">
+            <form id="login-form" action="/session" method="post">
+                <input type="hidden" id="token" name="token" value="">
+                <input type="submit">
+            </form>
         </div>
         
-    </div>
-    
-</div>
+    </body>
+</html>
 
 
-<div style="display: none;">
-    <form id="login-form" action="{{ LOCATION }}" method="post">
-        <input type="hidden" id="token" name="token" value="">
-        <input type="submit">
-    </form>
-</div>
 
-{% endblock %}
+
+

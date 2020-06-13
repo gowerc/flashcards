@@ -28,11 +28,11 @@ jobs:
               run: python -m pip install -r requirements.txt
               
             - name: Deploy Content
-              run: python db_update.py 2>&1 | tee /tmp/log-db_update.txt
+              run: python scripts/update_database.py 2>&1 | tee /tmp/log-update_database.txt
 
                 
             - name: Upload log
               uses: actions/upload-artifact@v2
               with:
-                  name: db_update
-                  path: /tmp/log-db_update.txt
+                  name: update_database
+                  path: /tmp/log-update_database.txt

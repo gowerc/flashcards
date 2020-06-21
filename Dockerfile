@@ -3,18 +3,13 @@
 FROM python:3.7-slim
 
 
-
-# Install production dependencies.
-RUN pip install google-api-python-client google-cloud-firestore grpcio
-RUN pip install Flask flask_api numpy gunicorn 
-
-
 # Copy local code to the container image.
 ENV SECRETS ""
 
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
+RUN python -m pip install -r requirements.txt
 
 
 # Run the web service on container startup. Here we use the gunicorn

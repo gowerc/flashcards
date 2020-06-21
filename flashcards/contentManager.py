@@ -114,7 +114,7 @@ class Question(object):
         content = json.dumps(self.content, sort_keys=True).encode("utf-8")
         hash_bytes = hashlib.blake2b(content, digest_size=size * 3).digest()
         question_hash = base64.b64encode(hash_bytes).decode("utf-8")[:size]
-        return question_hash.replace("/", "_").replace("+", "_")
+        return "Q" + question_hash.replace("/", "_").replace("+", "_")
     
 
 class QuestionStore(object):

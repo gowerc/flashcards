@@ -1,0 +1,51 @@
+
+{% extends 'default.html' %}
+
+
+{% block header %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'selection.js') }}"></script>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename = 'selection.css') }}"/>
+{% endblock %}
+
+
+{% block content %}
+<div id = "page-content" class="container" style="display:none">
+            
+    <br>
+    
+    <h2 class="section-text">Selected</h2>
+    
+    <div id="tags-selected" class="container">
+        <div class="row justify-content-center align-items-center">
+            {% for tag in TAGS %}
+                <div class="col-auto align-self-center">
+                    <button id="tag-selected-{{ tag.tagid }}" class="btn btn-md mt-2 mx-0 px-2 py-1" style="background-color:{{ tag.colour }}; color: white">{{ tag.name }}</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <h2 class="section-text">Available</h2>
+    
+    <div id="tags-available" class="container">
+        <div class="row justify-content-center align-items-center">
+            {% for tag in TAGS %}
+                <div class="col-auto align-self-center">
+                    <button id="tag-available-{{ tag.tagid }}" class="btn btn-md mt-2 mx-0 px-2 py-1" style="background-color:{{ tag.colour }}; color: white">{{ tag.name }}</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div id="tags-available" class="container">
+        <div class="row mt-5">
+            <div class="col-md-5 col-lg-5">
+                <button id="button-submit" class="btn btn-info btn-block btn-lg">Submit Selection</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
+{% endblock %}

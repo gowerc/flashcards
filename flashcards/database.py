@@ -32,10 +32,10 @@ class dbmanager(object):
         log.info("Fetching list of items for %s ...", dbname)
         return [i.id for i in self.db.collection(dbname).list_documents()]
     
-    def fetch_col_item(self, col, id):
+    def fetch_col_item(self, col, id, fields=None):
         dbname = self.key[col]
         log.info("Fetching item %s from %s ...", id, col)
-        return self.db.collection(dbname).document(id).get().to_dict()
+        return self.db.collection(dbname).document(id).get(field_paths=fields).to_dict()
     
     def write_col_item(self, col, id, content):
         dbname = self.key[col]

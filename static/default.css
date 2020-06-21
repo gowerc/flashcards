@@ -1,0 +1,10 @@
+.navbar-nav>li, .navbar-nav {
+    float: left !important;
+}
+
+.btn-huge{
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:22px;
+    padding-right:22px;
+}

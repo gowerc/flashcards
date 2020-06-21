@@ -48,3 +48,9 @@ local-python-up:
 	. venv/bin/activate; \
 	export SECRETS=$$(base64 secrets/secrets_global.json); \
 	python
+
+
+local-update-database:
+	. venv/bin/activate; \
+	export SECRETS=$$(base64 secrets/secrets_global.json); \
+	python ./scripts/update_database.py

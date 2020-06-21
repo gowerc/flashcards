@@ -9,9 +9,10 @@ __pycache__
 venv/
 secrets/
 
+
 .git/
 .vscode/
-
-
+tests/
+misc/
 
 .DS_Store

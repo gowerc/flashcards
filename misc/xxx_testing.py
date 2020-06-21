@@ -1,3 +1,40 @@
+
+
+from flashcards.misc import get_secrets
+from google.cloud import firestore
+from google.oauth2 import service_account
+
+
+def get_db_connection():
+    # Setup DB access
+    secrets = get_secrets()
+    db = firestore.Client(
+        project=secrets["GOOGLE_PROJECT_ID"],
+        credentials=service_account.Credentials.from_service_account_info(
+            secrets["GOOGLE_SERVICE_ACCOUNT_SECRETS"]
+        )
+    )
+    return db
+
+
+db = get_db_connection()
+
+db.collection("Documents").document("Tags").get(
+    field_paths=["TEST", "KA_INTRO_BIO_03"]
+).to_dict()
+
+
+
+
+
+
+
+
+
+
+
+
+
 ####################################
 #
 #

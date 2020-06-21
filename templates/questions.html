@@ -1,15 +1,21 @@
-{% extends 'core.html' %}
+
+{% extends 'default.html' %}
+
 
 
 {% block header %}
-    <script type="text/javascript" src="{{ url_for('static', filename = 'questions.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'questions.js') }}"></script>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename = 'questions.css') }}">
 {% endblock %}
 
 
+
 {% block content %}
+<div id = "page-content" class="container">
+    
     <div class="row mt-3">
         <div class="col-md-12 col-lg-12">
-            <div class="card text-black bg-light">
+            <div class="card text-black" id="question-card">
                 <div class="card-header">Question</div>
                 <div id="question-text" class="card-body"></div>
             </div>
@@ -19,8 +25,10 @@
     <div class="row mt-3" id="button-show-answer">
         <div class="col-md-5 col-lg-5">
             <button id="button-show" class="btn btn-info  btn-block  btn-lg">Show Answer</button>
+            <button id="button-skip" class="btn btn-secondary  btn-block  btn-lg">Skip</button>
         </div>
     </div>
+
 
 
     <div id="answer-div" style="display: none">
@@ -38,10 +46,11 @@
             <div class="col-md-5 col-lg-5">
                 <button id="button-correct" class="btn btn-Success  btn-block  btn-lg">Correct</button>
                 <button id="button-incorrect" class="btn btn-danger  btn-block  btn-lg">Incorrect</button>
+                <button id="button-flag" class="btn btn-warning  btn-block  btn-lg"></button>
             </div>
         </div>
         
     </div>
-
-    <div id="question-meta-data" data-question='{"subject":"{{ SUBJECT }}"}' style="display: none;"></div>
+    
+</div>
 {% endblock %}

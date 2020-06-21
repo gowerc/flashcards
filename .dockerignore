@@ -9,7 +9,9 @@ __pycache__
 venv/
 secrets/
 content/
+scripts/
 .git/
+.github/
 .vscode/
 tests/
 misc/

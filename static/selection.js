@@ -19,6 +19,10 @@ $(document).ready(async function () {
     tag_combos = content[0];
     tag_meta = content[1];
     tag_selected = content[2];
+    
+    if (tag_selected === null) {
+        tag_selected = []
+    }
 
     Object.getOwnPropertyNames(tag_meta).forEach(i => {
         $("#tag-selected-" + i).click(function () {

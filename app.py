@@ -10,15 +10,6 @@ app = flask.Flask(__name__)
 secrets = misc.get_secrets()
 
 
-def has_valid_session():
-    token = login.get_session_token()
-    if token is None:
-        return False
-    if not login.is_session_token_valid(token):
-        return False
-    return True
-
-
 def session_redirect(page, redirect_if="valid"):
     def fun(f):
         @wraps(f)
@@ -26,7 +17,9 @@ def session_redirect(page, redirect_if="valid"):
             
             assert redirect_if in ["valid", "invalid"]
             
-            valid = has_valid_session()
+            active = login.ActiverUser()
+            
+            valid = active.has_valid_session
             
             if redirect_if == "invalid":
                 valid = not valid
@@ -41,18 +34,9 @@ def session_redirect(page, redirect_if="valid"):
 def api_ensure_valid_session(f):
     @wraps(f)
     def triage(*args, **kwargs):
-        if not has_valid_session():
+        active = login.ActiverUser()
+        if not active.has_valid_session:
             return "", 401
-        dbm = database.dbmanager()
-        session_hash = login.get_session_token()
-        session_info = dbm.fetch_col_item("Sessions", session_hash)
-        user_info = dbm.fetch_col_item("Users", session_info["UserHash"])
-        active = {
-            "dbm": dbm,
-            "session_hash": session_hash,
-            "session_info": session_info,
-            "user_info": user_info
-        }
         return f(active)
     return triage
 
@@ -131,75 +115,118 @@ def page_selection():
 @app.route("/get_selection", methods=["GET"])
 @api_ensure_valid_session
 def get_selection(active):
-    tag_selection = active["user_info"].get("TagSelection")
-    return flask.Response(json.dumps(tag_selection), status=200, mimetype='application/json')
+    active.get_user_info()
+    tag_selection = active.tag_selection
+    return flask.Response(
+        json.dumps(tag_selection),
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @app.route("/set_selection", methods=["POST"])
 @api_ensure_valid_session
 def set_selection(active):
+    active.get_user_info()
     new_selection = flask.request.get_json()["selection"]
-    
-    tag_meta = active["dbm"].fetch_col_item("Documents", "TagMeta")
+    assert isinstance(new_selection, list)
+    tag_meta = active.dbm.fetch_col_item("Documents", "TagMeta")
     for tag in new_selection:
         if tag not in tag_meta.keys():
             return "", 400
     
     update_user = {"TagSelection": new_selection}
-    active["dbm"].update_col_item("Users", active["session_info"]["UserHash"], update_user)
+    active.dbm.update_col_item("Users", active.user_hash, update_user)
     return "", 200
 
 
 @app.route("/get_tagcombinations", methods=["GET"])
 @api_ensure_valid_session
 def get_tagcombinations(active):
-    tags = active["dbm"].fetch_col_item("Documents", "Tags")
-    return flask.Response(json.dumps(tags), status=200, mimetype='application/json')
+    tags = active.dbm.fetch_col_item("Documents", "Tags")
+    return flask.Response(
+        json.dumps(tags),
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @app.route("/get_tagmeta", methods=["GET"])
 @api_ensure_valid_session
 def get_tagmeta(active):
-    tagmeta = active["dbm"].fetch_col_item("Documents", "TagMeta")
-    return flask.Response(json.dumps(tagmeta), status=200, mimetype='application/json')
+    tagmeta = active.dbm.fetch_col_item("Documents", "TagMeta")
+    return flask.Response(
+        json.dumps(tagmeta),
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @app.route("/get_question", methods=["GET"])
 @api_ensure_valid_session
 def get_question(active):
-    tag_selection = active["user_info"]["TagSelection"]
-    document_tags = active["dbm"].fetch_col_item("Documents", "Tags")
+    active.get_user_info()
+    tag_selection = active.tag_selection
+    document_tags = active.dbm.fetch_col_item("Documents", "Tags")
     selected_document_ids = [
         key
         for key, value in document_tags.items()
         if questions.contains_tags(value, tag_selection)
     ]
-    document_questions = active["dbm"].fetch_col_item("Documents", "Questions", selected_document_ids)
+    document_questions = active.dbm.fetch_col_item("Documents", "Questions", selected_document_ids)
     possible_questions = [item for qlist in document_questions.values() for item in qlist]
-    possible_question_scores = active["dbm"].fetch_col_item(
+    possible_question_scores = active.dbm.fetch_col_item(
         "Scores",
-        active["session_info"]["UserHash"],
+        active.user_hash,
         possible_questions
     )
     selected_question_id = questions.select_question_id(possible_question_scores)
-    selected_question = active["dbm"].fetch_col_item("Questions", selected_question_id)
+    selected_question = active.dbm.fetch_col_item("Questions", selected_question_id)
     selected_question["QUESTION_ID"] = selected_question_id
-    return flask.Response(json.dumps(selected_question), status=200, mimetype='application/json')
+    return flask.Response(
+        json.dumps(selected_question),
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @app.route("/update_question_score", methods=["POST"])
 @api_ensure_valid_session
 def update_question_score(active):
-    question_id = flask.request.get_json()["question_id"]
-    result = flask.request.get_json()["result"]
-    user_hash = active["session_info"]["UserHash"]
-    existing_score = active["dbm"].fetch_col_item("Scores", user_hash, [question_id])[question_id]
+    active.get_user_info()
+    data = flask.request.get_json()
+    question_id = data["question_id"]
+    result = data["result"]
+    assert isinstance(result, bool)
+    assert isinstance(question_id, str)
+    user_hash = active.user_hash
+    existing_score = active.dbm.fetch_col_item("Scores", user_hash, [question_id])[question_id]
     new_score = questions.update_score(existing_score, result)
-    active["dbm"].update_col_item("Scores", user_hash, {question_id: new_score})
+    active.dbm.update_col_item("Scores", user_hash, {question_id: new_score})
     return "", 200
 
 
-@app.route("/flag_question", methods=["POST"])
+@app.route("/set_flag", methods=["POST"])
 @api_ensure_valid_session
-def flag_question():
-    pass
+def set_flag(active):
+    active.get_user_info()
+    if not active.can_flag:
+        return "", 401
+    data = flask.request.get_json()
+    question_id = data["question_id"]
+    flagged = data["flagged"]
+    assert isinstance(flagged, bool)
+    assert isinstance(question_id, str)
+    active.dbm.update_col_item("Questions", question_id, {"FLAGGED": flagged})
+    return "", 200
+
+
+@app.route("/get_canflag", methods=["GET"])
+@api_ensure_valid_session
+def get_canflag(active):
+    active.get_user_info()
+    return flask.Response(
+        json.dumps({"CanFlag": active.can_flag}),
+        status=200,
+        mimetype='application/json'
+    )

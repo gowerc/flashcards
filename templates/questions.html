@@ -4,6 +4,10 @@
 
 
 {% block header %}
+<!-- Enable equation support -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <script type="text/javascript" src="{{ url_for('static', filename = 'questions.js') }}"></script>
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename = 'questions.css') }}">
 {% endblock %}
@@ -12,22 +16,27 @@
 
 {% block content %}
 <div id = "page-content" class="container">
-    
-    <div class="row mt-3">
-        <div class="col-md-12 col-lg-12">
-            <div class="card text-black" id="question-card">
-                <div class="card-header">Question</div>
-                <div id="question-text" class="card-body"></div>
+   
+    <div id = "question-div" >
+        
+        <div class="row mt-3">
+            <div class="col-md-12 col-lg-12">
+                <div class="card text-black" id="question-card">
+                    <div class="card-header">Question</div>
+                    <div id="question-text" class="card-body"></div>
+                </div>
             </div>
         </div>
+    
+        <div class="row mt-3" id="button-show-answer" style="display: none;">
+            <div class="col-md-5 col-lg-5">
+                <button id="button-show" class="btn btn-info  btn-block  btn-lg">Show Answer</button>
+                <button id="button-skip" class="btn btn-secondary  btn-block  btn-lg">Skip</button>
+            </div>
+        </div>
+        
     </div>
 
-    <div class="row mt-3" id="button-show-answer">
-        <div class="col-md-5 col-lg-5">
-            <button id="button-show" class="btn btn-info  btn-block  btn-lg">Show Answer</button>
-            <button id="button-skip" class="btn btn-secondary  btn-block  btn-lg">Skip</button>
-        </div>
-    </div>
 
 
 

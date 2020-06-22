@@ -103,7 +103,7 @@ def create_user_if_not_exist(google_info):
     user = {
         "Email": user_email,
         "Created": get_now(),
-        "TagSelection": None,
+        "TagSelection": [],
         "TagSelectionDate": None,
         "CanFlagQuestions": False,
         "CanUseApp": True
@@ -112,3 +112,30 @@ def create_user_if_not_exist(google_info):
     default_scores = dbm.fetch_col_item("Scores", "Default")
     dbm.write_col_item("Users", user_hash, user)
     dbm.write_col_item("Scores", user_hash, default_scores)
+
+
+class ActiverUser(object):
+    def __init__(self):
+        self.dbm = dbmanager()
+        self.session_hash = get_session_token()
+        self.session_list = self.dbm.fetch_col_list("Sessions")
+        
+        if self.session_hash not in self.session_list:
+            self.has_valid_session = False
+            return
+            
+        self.session_info = self.dbm.fetch_col_item("Sessions", self.session_hash)
+        
+        if self.session_info["Expires"] < get_now():
+            self.has_valid_session = False
+            self.dbm.delete_col_item("Sessions", self.session_hash)
+        else:
+            self.has_valid_session = True
+    
+    def get_user_info(self):
+        self.user_info = self.dbm.fetch_col_item("Users", self.session_info["UserHash"])
+        self.user_hash = self.session_info["UserHash"]
+        self.tag_selection = self.user_info["TagSelection"]
+        self.can_flag = self.user_info["CanFlagQuestions"]
+        if self.tag_selection is None:
+            self.tag_selection = []

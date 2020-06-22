@@ -6,20 +6,19 @@ DOCID: TEST
 
 ML01:
     question:
-        - a
-        - b
-        - c
+        - test question 1 1
+        - test question 1 2
+        - test question 1 3
     answer:
-        - a1
-        - a2
+        - test answer 1 1
+        - test answer 1 2
+        - test answer 1 3
 
 
 
 ML02:
     question:
-        - abba
-        - bafawfa
-        - cawfawfaa
+        - this one has an image
     answer:
         - a4
         - <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com">
@@ -28,33 +27,54 @@ ML02:
 
 ML03:
     question:
-        - afwafa
-        - bwafafaf
-        - cwafawaw
+        - test question 3 1
+        - test question 3 2 
+        - test question 3 3 
     answer:
-        - a7
-        - a7
+        - test answer 3 1
+        - test answer 3 2
+        - test answer 3 3
 
 
 
 ML04:
     question:
-        - aafwwafaw
-        - bfgegsg
-        - cfawfa
+        - test question 4 1
     answer:
-        - a9
-        - a9
+        - test answer 4 1
 
 
 ML05:
     question:
-        - abc
-        - awdawd
-        - awdaw
+        - this one has an equation
     answer:
-        - a1
-        - a2
+        - inline equation $\alpha^2$ end of equation
+        - block question $$\alpha + \beta \frac{\sigma^2}{2}$$ end of equation
+        - curly braces \(\alpha^2\)
+        - square braces \[ \alpha + \beta \frac{\sigma^2}{2}\] 
+        - |
+            long equation $$
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2} \\
+            \alpha + \beta \frac{\sigma^2}{2}
+            $$
+        - alligned $$\begin{aligned} 2x - 4 &= 6 \\ 2x &= 10 \\ x &= 5 \end{aligned}$$
+        - |
+            long equation alligned 
+            $$
+            \begin{aligned} 
+            2x - 4 &= 6 \\ 
+                2x &= 10 \\ 
+                 x &= 5 
+            \end{aligned}
+            $$
 
 
 

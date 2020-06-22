@@ -11,6 +11,7 @@ secrets/
 content/
 scripts/
 .git/
+.github/
 .vscode/
 tests/
 misc/

@@ -125,35 +125,8 @@ class test(object):
 
 
 
-import hashlib
-import base64
+import flashcards.database as db
 
+dbm = db.dbmanager()
 
-
-
-get_hash(b"some random binary object", size = 9)
-
-
-from numpy import random
-
-x = [get_hash(i) for i in random.normal(loc = 1000000, scale = 10000, size = 10000000)]
-
-
-len(x) - len(set(x))
-
-
-
-slots = 60.0 ** 9.0
-items = 1000000
-placed = 0.0
-
-prob_of_no_collision = 1.0
-
-for i in range(1, items + 1):
-    prob_of_no_collision = prob_of_no_collision * ((slots - placed) / slots)
-    placed = placed + 1
-
-(1 - prob_of_no_collision) * 100
-
-
-
+dbm.fetch_col_item("Scores", "A+zqpbYJ4cZaRzRp", ["0EF9_34FO"])

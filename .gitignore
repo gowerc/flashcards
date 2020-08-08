@@ -10,9 +10,10 @@ venv/
 secrets/
 
 
-.git/
+
+
 .vscode/
-tests/
+
 
 
 .DS_Store

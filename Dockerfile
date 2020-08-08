@@ -4,13 +4,15 @@ FROM python:3.7-slim
 
 
 # Copy local code to the container image.
-ENV SECRETS ""
+
 
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 RUN python -m pip install -r requirements.txt
 
+
+ENV SECRETS ""
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.

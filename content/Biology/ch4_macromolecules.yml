@@ -40,8 +40,111 @@ MACRO03:
 
 
  
+MACRO04:
+    question: 
+        - What term is used to mean single / two  / many sugars?  What is fructose, starch  and lactose? 
+
+    answer:
+        - monosaccharide (also known as simple sugars including glucose, fructose & galactose )
+        - disaccharide (lactose = glucose + galactose, maltose = glucose *2 and sucrose (table sugar) =  glucose + fructose)  
+        - polysaccharides ( e.g. cellulose, starch, glucagon). 
+ 
 
 
+ 
+ 
+MACRO05:
+    question:
+        - What is the main purpose of carbohydrates? 
+    answer:
+        - | 
+            Simple sugars are used as a source of energy by our cells whilst complex 
+            sugars are used for wide array of tasks such energy storage, shells on insects 
+            and the cell wall in plants (which is what gives them their rigid structure) 
+
+ 
+ 
+
+  
+MACRO06:
+    question:
+        - What are lipids? What are they used for? 
+    answer:
+        - |
+            Lipids are a group of molecules defined roughly by their shared property of being hydrophobic  
+            (However some lipids are amphipathic ("am"-"fee"-"pafic") meaning 1 end is hydrophilic 
+            whist the other is hydrophobic). 
+            The primary purpose of lipids is to: 
+        - store energy 
+        - provide insulation 
+        - make cell membranes 
+        - form water repellent layers on leaves 
+        - provide the building blocks for hormones 
+
+ 
+
+  
+MACRO07:
+    question:
+        - Describe the structure of Glucose, how does it relate to fructose and galactose. 
+    answer:
+        - Chemical formula =  c6 H12 06 
+        - First carbon has double bond to Oxygen (carbonyl) all the others are bonded to other carbons + hydrogens 
+        - Most commonly found in a ring where the fifth carbon bonds to the oxygen of the first carbon 
+        - fructose is a structural isomer where the double bonded oxygen is on the second carbon 
+        - galactose is a stereoisomer (identical but orientated different) 
+
+
+
+  
+MACRO08:
+    question:
+        - What is Triacylglycerol,  explain the different parts of this term and what they mean. 
+
+    answer:
+        - Also known as fat or Triglycerides,  a type of lipid 
+        - | 
+            It is 3 fatty acids ( long hydrocarbon chains that end in a carboxyl group) that joined 
+            onto a glycerol molecule back bone ( C3 H8 O3) via dehydration synthesis 
+        - | 
+            The joining points have a Acyl functional group thus "tri" = 3 , "acyl" = the functional group , 
+            "glycerol" = The molecule that binds them together.  
+
+
+
+
+ 
+  
+MACRO09:
+    question:
+        - What are the 4 types triglycerides and what are the differences between them 
+    answer:
+        - Saturated - no double bonds in any of the hydrocarbon chain, are typically solid at room temperature  i.e. butter 
+        - Unsaturated or Mono-unsaturated  - Where there is a single double bond with a cis isomer which causes a kink. typically liquid at room temperature e.g. oils 
+        - Polyunsaturated - Where there are multiple double bonds with cis isomers causing kinks. Almost always found as liquids 
+        - Trans - Where there are many double bonds but they are all trans isomers meaning there are no kinks. These do not occur in nature and have can have significant health complications 
+
+ 
+
+
+MACRO10:
+    question:
+        - What is the tell-tale sign of a steroid? What are steroids used for? 
+    answer:
+        - | 
+            Most steroids consist of 17 carbons formed to make 3 rings of 6 carbons and a 4th ring 
+            made of just 5 carbons (with 2 carbons being shared between each ring i.e 6 + 4 + 4 + 3 = 17). 
+            What differentiates between steroids is what additional stuff is bolted onto them. 
+        - |
+            Steroids are typically used as long distance signals used to control physiological 
+            processes such as growth , metabolism and reproduction (some steroids are lipid based 
+            whilst others are protein based, known as peptide hormones) 
+
+ 
+
+ 
+
+ 
 
 
  

@@ -16,7 +16,7 @@ MACRO01:
 
 
 
- 
+
 MACROCARB:
     question:
         - Describe the purpose of carbohydrates
@@ -31,7 +31,7 @@ MACROLIPID:
     question:
         - Describe the purpose of Lipids
     answer:
-        - | 
+        - |
             Lipids are a group of molecules defined roughly by their shared property of being hydrophobic  
             (However some lipids are amphipathic ("am"-"fee"-"pafic") meaning 1 end is hydrophilic 
             whist the other is hydrophobic). The primary purpose of lipids are: 
@@ -54,7 +54,7 @@ MACROPROT:
         - Enzyme - Enzymes carry out almost all of the thousands of chemical reactions that take place in cells. They also assist with the formation of new molecules by reading the genetic information stored in DNA.	
         - Messenger - Messenger proteins, such as some types of hormones, transmit signals to coordinate biological processes between different cells, tissues, and organs.	
         - Structural component - These proteins provide structure and support for cells. On a larger scale, they also allow the body to move.	
-        - Transport/storage	- These proteins bind and carry atoms and small molecules within cells and throughout the body.	
+        - Transport/storage - These proteins bind and carry atoms and small molecules within cells and throughout the body.	
 
 
 
@@ -190,7 +190,7 @@ MACRO11:
             - Guanine - Cytosine<br/>
             - Adenine - Uracil
         - The bases are held together by hydrogen bonding. 
-        - A nucleotide is a complete set of the a sugar + phosphate  + a bitrogenous base
+        - A nucleotide is a complete set of the a sugar with a phosphate group + a nitrogenous base
 
  
 

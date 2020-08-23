@@ -1,16 +1,70 @@
+
 TAGS: [ BIOLOGY, COURSE]
 DOCID: KA_INTRO_BIO_04
 
 
 
+
 MACRO01:
     question:
-        - What are the 4 main macro molecule groups and what is their purpose? 
+        - What are the 4 main macro molecule groups?
     answer:
-        - Carbohydrates  ( TODO ) 
-        - Lipids (fats)   ( TODO ) 
-        - Proteins   ( TODO ) 
-        - nucleic acids    ( TODO ) 
+        - Carbohydrates
+        - Lipids
+        - Proteins
+        - Nucleic Acids
+
+
+
+ 
+MACROCARB:
+    question:
+        - Describe the purpose of carbohydrates
+    answer:
+        - |
+            Are broken down into glucose before entering the blood stream where it used to produce ATP 
+            which is used to power a variety of metabolic processes. Excess carbohydrates are stored as glycogen which is stored
+            in the live and muscles. Excess glycogen is stored as fat.
+
+
+MACROLIPID:
+    question:
+        - Describe the purpose of Lipids
+    answer:
+        - | 
+            Lipids are a group of molecules defined roughly by their shared property of being hydrophobic  
+            (However some lipids are amphipathic ("am"-"fee"-"pafic") meaning 1 end is hydrophilic 
+            whist the other is hydrophobic). The primary purpose of lipids are: 
+        - Storage of energy for long-term use (e.g. triglycerides)
+        - Hormonal roles (e.g. steroids such as oestrogen and testosterone)
+        - Insulation – both thermal (triglycerides) and electrical (sphingolipids)
+        - Protection of internal organs (e.g. triglycerides and waxes)
+        - Structural components of cells (e.g. phospholipids and cholesterol)
+
+
+
+MACROPROT:
+    question:
+        - Describe the purpose of Proteins
+    answer:
+        - |
+            Play many critical roles in the body. They do most of the work in cells and are required 
+            for the structure, function,and regulation of the body’s tissues and organs.  Examples of their function include:
+        - Antibody - Antibodies bind to specific foreign particles, such as viruses and bacteria, to help protect the body.	
+        - Enzyme - Enzymes carry out almost all of the thousands of chemical reactions that take place in cells. They also assist with the formation of new molecules by reading the genetic information stored in DNA.	
+        - Messenger - Messenger proteins, such as some types of hormones, transmit signals to coordinate biological processes between different cells, tissues, and organs.	
+        - Structural component - These proteins provide structure and support for cells. On a larger scale, they also allow the body to move.	
+        - Transport/storage	- These proteins bind and carry atoms and small molecules within cells and throughout the body.	
+
+
+
+MACRONUC:
+    question:
+        - Describe the purpose of Nucleic Acids
+    answer:
+        - Found within all cells and viruses, nucleic acids are used for the storage and expression of genetic information
+
+
 
 
 MACRO02:
@@ -42,45 +96,22 @@ MACRO03:
  
 MACRO04:
     question: 
-        - What term is used to mean single / two  / many sugars?  What is fructose, starch  and lactose? 
+        - What term is used to mean single / two  / many sugars?  Give an 3 examples for each? 
 
-    answer:
-        - monosaccharide (also known as simple sugars including glucose, fructose & galactose )
-        - disaccharide (lactose = glucose + galactose, maltose = glucose *2 and sucrose (table sugar) =  glucose + fructose)  
-        - polysaccharides ( e.g. cellulose, starch, glucagon). 
- 
-
-
- 
- 
-MACRO05:
-    question:
-        - What is the main purpose of carbohydrates? 
     answer:
         - | 
-            Simple sugars are used as a source of energy by our cells whilst complex 
-            sugars are used for wide array of tasks such energy storage, shells on insects 
-            and the cell wall in plants (which is what gives them their rigid structure) 
-
- 
- 
-
-  
-MACRO06:
-    question:
-        - What are lipids? What are they used for? 
-    answer:
+            Monosaccharide (also known as simple sugars)
+            Purpose -  Used as an Energy source including 
+            Examples - glucose, fructose & galactose
         - |
-            Lipids are a group of molecules defined roughly by their shared property of being hydrophobic  
-            (However some lipids are amphipathic ("am"-"fee"-"pafic") meaning 1 end is hydrophilic 
-            whist the other is hydrophobic). 
-            The primary purpose of lipids is to: 
-        - store energy 
-        - provide insulation 
-        - make cell membranes 
-        - form water repellent layers on leaves 
-        - provide the building blocks for hormones 
-
+            Disaccharide 
+            Purpose -  Used for transport
+            Examples - lactose (glucose + galactose), maltose (glucose *2) and sucrose aka table sugar (glucose + fructose) 
+        - |
+            Polysaccharides  
+            Purpose -  Used for storage
+            Examples - cellulose, glycogen, starch
+ 
  
 
   
@@ -89,7 +120,7 @@ MACRO07:
         - Describe the structure of Glucose, how does it relate to fructose and galactose. 
     answer:
         - Chemical formula =  c6 H12 06 
-        - First carbon has double bond to Oxygen (carbonyl) all the others are bonded to other carbons + hydrogens 
+        - First carbon has double bond to Oxygen (carbonyl) all the others are bonded to other carbons + hydrogen's 
         - Most commonly found in a ring where the fifth carbon bonds to the oxygen of the first carbon 
         - fructose is a structural isomer where the double bonded oxygen is on the second carbon 
         - galactose is a stereoisomer (identical but orientated different) 
@@ -104,7 +135,7 @@ MACRO08:
     answer:
         - Also known as fat or Triglycerides,  a type of lipid 
         - | 
-            It is 3 fatty acids ( long hydrocarbon chains that end in a carboxyl group) that joined 
+            It is 3 fatty acids ( long hydrocarbon chains that end in a carbonyl group) that joined 
             onto a glycerol molecule back bone ( C3 H8 O3) via dehydration synthesis 
         - | 
             The joining points have a Acyl functional group thus "tri" = 3 , "acyl" = the functional group , 
@@ -145,19 +176,83 @@ MACRO10:
  
 
  
-
+MACRO11:
+    question:
+        - What does DNA stand for? 
+        - What are the 5 different bases and how do they pair up? 
+        - What force holds the bases together?
+        - What is a nucleotide?
+    answer:
+        - Deoxyribonucleic acid  - A sugar (deoxyribose) with a phosphate group (acidic) backbone (the D and A) located within the nucleus of cells (the N)
+        - | 
+            The possible basis and their pairings are: <br/>
+            - Adenine - Thymine<br/>
+            - Guanine - Cytosine<br/>
+            - Adenine - Uracil
+        - The bases are held together by hydrogen bonding. 
+        - A nucleotide is a complete set of the a sugar + phosphate  + a bitrogenous base
 
  
 
+MACRO12:
+    question:
+        - What is the relationship between DNA, Chromosomes, Genes and RNA
+    answer:
+        - |
+            DNA is the generic structure for carrying genetic information.
+            Formed as a phosphate + sugar backbone in a double helix with the genetic information
+            stored in the bases connecting the double helix
+        - |
+            Chromosomes are structures formed by compacting large amounts of DNA together. We have 46 
+            Chromosomes in each cell formed as 23 pairs with one set coming from each parent
+        - Genes are a specific section of DNA that is used to code a specific protein
+        - RNA is a single helix structure (similar to DNA) which uses ribose as its sugar backbone
+
+
+MACRO13:
+    question:
+        - What is meant by DNA having a Anti-parallel structure?
+        - How do we denote the direction of DNA? 
+        - What do these numbers represent?
+    answer:
+        - The orientation of DNA is denoted by the direction of the carbon atoms within the sugar backbone
+        - The sugar connects to the phosphate group at its 3' and 5' carbon.
+        - The two sides of the double helix will always be in the opposite direction with one being 3'-5' and the other 5'-3' (thus anti-parallel)
+
+
+
+MACRO14:
+    question:
+        - Briefly describe the components of the "Central Dogma" of molecular biology
+    answer:
+        - DNA - Stores all our genetic information
+        - Ribosomes - Molecular machines that read mRNA in order to create proteins
+        - mRNA - Messenger RNA - Binds to DNA and brings the information to the ribosomes
+        - tRNA - Transfer RNA - Used to bring amino acids to the ribosomes
+        - rRNA - Ribosomal RNA - Structural components of the Ribosomes
+        - miRNA - Micro RNA - Act as gene regulators
+
+
+
+MACRO15:
+    question:
+        - With regards to the "Central Dogma" of molecular biology what is
+        - Replication
+        - Transcription
+        - Translation
+    answer:
+        - Replication - Where DNA makes a copy of itself by splitting the apart the double helix and combining with copies of the missing basis
+        - Transcription - Where messenger RNA (mRNA) is created which is used to take genetic information outside of the nucleus
+        - Translation - The process of using mRNA to create amino acids (each 3 letter sequence forms a codon which binds to one of the 20 amino acids) 
 
 
 
 
-
-
-
-
-
+# MACRO15:
+#     question:
+#         - 
+#     answer:
+#         -
 
 
 

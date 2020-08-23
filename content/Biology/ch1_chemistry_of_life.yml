@@ -176,9 +176,15 @@ LIFE20:
 
 LIFE21:
     question:
-        - What is Electronegativity and how is it measured
+        - What is Electronegativity ? 
+        - Wow is it measured? 
+        - What is the range of this scale ?
+        - What are the values for hydrogen and oxygen ? 
     answer:
-        - Its an atoms ability to hog electrons within a bond and its measured on the Pauling scale
+        - Its an atoms ability to hog electrons within a covalent bond
+        - It is measured on the Pauling scale
+        - The Pauling scale has a range of 0.7 to 3.98
+        - Oxygen has a value of 3.44 and hydrogen has a value of 2.2
 
 
 LIFE22:

@@ -53,7 +53,7 @@ class Document(object):
         self.question_hashes = [question.hashid for question in self.questions]
     
     def fix_local_paths(self, li):
-        return [string.replace("{{HERE}}", self.root) for string in li]
+        return [string.replace("{{HERE}}", "/static/" + self.root) for string in li]
     
     def validate_content(self):
         """

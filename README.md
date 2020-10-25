@@ -3,15 +3,20 @@
 Simple flask app to serve flashcards
 
 
+## Features / Details
 
-## Details
-
-* Stores data on gcp firestore
-* Runs flask app via gcp run
-* Authenticates via JS google Oauth2 
-* Tracks how well I answer questions and serves them with a higher probability rated towards the ones I get wrong
-
-
+* Supports images
+* Supports MathJax equations
+* Tracks response accuracy and adjusts serving probabilities accordingly
+* Stores data on GCP Firestore
+* Runs flask via GCP Run
+* Authenticates via JS Google Oauth2 
 
 
+## Dependencies
+
+* Python
+* JQ
+* make
+* gcloud
 

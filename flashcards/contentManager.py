@@ -33,9 +33,11 @@ def keys_to_upper(dic):
 
 
 class Document(object):
-    def __init__(self, filename):
-        self.filename = filename
-        self.content_raw = read_yaml_file(filename)
+    def __init__(self, root, file):
+        self.root = root
+        self.file = file
+        self.filename = root + "/" + file
+        self.content_raw = read_yaml_file(self.filename)
         self.content_validated = self.validate_content()
         self.docid = self.content_validated.pop("DOCID")
         self.tags = self.content_validated.pop("TAGS")
@@ -49,7 +51,10 @@ class Document(object):
         ]
         
         self.question_hashes = [question.hashid for question in self.questions]
-       
+    
+    def fix_local_paths(self, li):
+        return [string.replace("{{HERE}}", self.root) for string in li]
+    
     def validate_content(self):
         """
         Convert keys all to Upper case then ensure they conform to the expected standards
@@ -68,7 +73,10 @@ class Document(object):
             question = temp.get("QUESTION")
             answer = temp.get("ANSWER")
             self.assert_question_meta(question, answer, question_id)
-            dic_ret[question_id] = {"QUESTION": question, "ANSWER": answer}
+            dic_ret[question_id] = {
+                "QUESTION": self.fix_local_paths(question),
+                "ANSWER": self.fix_local_paths(answer)
+            }
         
         return dic_ret
     

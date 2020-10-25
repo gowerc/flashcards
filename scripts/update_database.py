@@ -20,7 +20,7 @@ question_store = contentManager.QuestionStore()
 for root, dirs, files in os.walk(data_folder):
     for file in files:
         if file.endswith(".yml") and file != "tags.yml":
-            document = contentManager.Document(root + "/" + file)
+            document = contentManager.Document(root, file)
             document_store.add_document(document)
             question_store.add_document(document)
 

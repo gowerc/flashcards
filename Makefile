@@ -29,7 +29,6 @@ docker-up-python:
 
 docker-deploy-content:
 	. ./scripts/setup_secrets_local.sh ;\
-	#docker run -e SECRETS="$$SECRETS" --rm -it flashcards:1.0 ls \
 	docker run -e SECRETS="$$SECRETS" --rm -it flashcards:1.0 python ./scripts/update_database.py
 
 

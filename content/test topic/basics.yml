@@ -20,15 +20,15 @@ ML02:
     question:
         - this one has a remote image
     answer:
-        - a4
-        - <img class="img-responsive" src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com">
+        - a4 
+        - <img class="img-fluid" src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com">
 
 ML07:
     question:
         - this one has a local image
     answer:
-        - default answer
-        - <img class="img-responsive" src="{{HERE}}/test_image.png">
+        - default answer 
+        - <img class="img-fluid" src="{{HERE}}/test_image.png">
 
 
 ML03:

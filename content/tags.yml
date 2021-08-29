@@ -27,7 +27,13 @@ NETWORK:
     NAME: Networking
     RANK: 2
 
+MEDICINE:
+    NAME: Medicine
+    RANK: 1
 
+TERMINOLOGY:
+    NAME: Terminology
+    RANK: 2
 
 TEST01:
     NAME: Test tag - level 1

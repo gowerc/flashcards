@@ -1,0 +1,294 @@
+TAGS: [ MEDICINE, TERMINOLOGY]
+DOCID: BASIC_MEDICINE
+
+
+
+
+
+basemed01:
+    question:
+        - What is an Aneurysm
+    answer:
+        - An aneurysm is a bulge in a blood vessel caused by a weakness in the blood vessel wall, usually where it branches. As blood passes through the weakened blood vessel, the blood pressure causes a small area to bulge outwards like a balloon
+
+
+basemed02:
+    question:
+        - What is Ischemia
+    answer:
+        - A restriction in blood supply to tissues, causing a shortage of oxygen that is needed for cellular metabolism
+
+
+basemed03:
+    question:
+        - What is an Infarction
+    answer:
+        - Tissue death due to inadequate blood supply to the affected area. It may be caused by artery blockages, rupture, mechanical compression, or vasoconstriction.
+
+
+basemed04:
+    question:
+        - What is Hypertension
+    answer:
+        - High blood pressure
+
+
+basemed05:
+    question:
+        - What is a Contusion
+    answer:
+        - A Bruise
+
+
+basemed06:
+    question:
+        - What is an Edema
+    answer:
+        - Edema is swelling caused by excess fluid trapped in your body's tissues. Although edema can affect any part of your body, you may notice it more in your hands, arms, feet, ankles and legs
+
+
+basemed07:
+    question:
+        - What is an Embolism
+    answer:
+        - An embolism is a blocked artery caused by a foreign body, such as a blood clot or an air bubble. 
+
+basemed08:
+    question:
+        - What is an Abrasion
+    answer:
+        - An abrasion is a type of open wound that’s caused by the skin rubbing against a rough surface. It may be called a scrape or a graze
+
+basemed09:
+    question:
+        - What is an Abscess
+    answer:
+        - A tender, pus-filled pocket usually due to infection.
+
+
+basemed10:
+    question:
+        - What is Thrombosis
+    answer:
+        - A blood clot within a blood vessel that affects normal blood flow.
+
+
+
+basemed11:
+    question:
+        - What does the prefix "" mean
+    answer:
+        - 
+
+
+basemed12:
+    question:
+        - What does the prefix "Cardi/o" mean
+    answer:
+        - Related to the heart.
+
+
+basemed13:
+    question:
+        - What does the prefix "Derm/a/o | dermat/o" mean
+    answer:
+        - Pertaining to the skin.
+
+
+basemed14:
+    question:
+        - What does the prefix "Encephal/o" mean
+    answer:
+        - Related to the brain.
+
+
+
+basemed15:
+    question:
+        - What does the prefix "Gastr/o" mean
+    answer:
+        - Related to the stomach.
+
+
+basemed16:
+    question:
+        - What does the prefix "Hemat/o" mean
+    answer:
+        - Pertaining to blood.
+
+
+basemed17:
+    question:
+        - What does the prefix "My/o" mean
+    answer:
+        - Related to muscle.
+
+
+basemed18:
+    question:
+        - What does the prefix "Oste/o" mean
+    answer:
+        - Related to bone.
+
+
+basemed19:
+    question:
+        - What does the prefix "Pulmon/o" mean
+    answer:
+        - Refers to the lungs.
+
+
+basemed20:
+    question:
+        - What does the prefix "Rhin/o" mean
+    answer:
+        - Related to the nose.
+
+
+basemed21:
+    question:
+        - What does Sclerosis mean
+    answer:
+        - Hard or hardening.
+
+
+basemed22:
+    question:
+        - What does "Stasis" mean
+    answer:
+        - Slowing or stopping the flow of a bodily fluid.
+
+basemed23:
+    question:
+        - What does the prefix "Therm/o" mean
+    answer:
+        - Indicates heat.
+
+
+
+
+
+basemed24:
+    question:
+        - What does the prefix/suffix "A-, an-" mean
+    answer:
+        - Lack of or without. e.g  anaerobic  - without oxygen
+
+basemed25:
+    question:
+        - What does the prefix/suffix "-ation" mean
+    answer:
+        - Indicates a process. e.g. cogitation - A thoughtful consideration 
+
+basemed26:
+    question:
+        - What does the prefix/suffix "Dys-" mean
+    answer:
+        - Abnormal, difficult, or painful. e.g. dyspnea - a difficultly to breath
+
+
+basemed27:
+    question:
+        - What does the prefix/suffix "-ectomy" mean
+    answer:
+        - Surgical removal of something. e.g. appendectomy - surgical removal of the appendix
+
+
+basemed28:
+    question:
+        - What does the prefix/suffix "-ismus" mean
+    answer:
+        - Indicates a spasm or contraction. e.g. strabismus - A visual defect in which one eye cannot focus with the other on an object because of imbalance of the eye muscles. Also called squint.
+
+
+basemed29:
+    question:
+        - What does the prefix/suffix "-itis" mean
+    answer:
+        - Signifies inflammation. e.g. meningitis - Inflammation of the meninges of the brain and the spinal cord
+
+
+basemed30:
+    question:
+        - What does the prefix/suffix "-lysis" mean
+    answer:
+        - Decomposition, destruction, or breaking down. e.g. lipolysis - The splitting up or decomposition of fat
+
+
+basemed31:
+    question:
+        - What does the prefix/suffix "Macro-" mean
+    answer:
+        - Large in size.
+
+
+basemed32:
+    question:
+        - What does the prefix/suffix "Melan/o-" mean
+    answer:
+        - Black or dark in color.
+
+
+basemed33:
+    question:
+        - What does the prefix/suffix "Micro-" mean
+    answer:
+        - Small in size.
+
+
+basemed34:
+    question:
+        - What does the prefix/suffix "-ology" mean
+    answer:
+        - The study of a particular concentration.
+
+
+basemed35:
+    question:
+        - What does the prefix/suffix "-osis" mean
+    answer:
+        - Indicates something that is abnormal. e.g. osteoporosis - decreased bone density and strength
+
+
+basemed36:
+    question:
+        - What does the prefix/suffix "-otomy" mean
+    answer:
+        - To cut into. e.g. lobotomy - a form of psychosurgery consisting of cutting of nerve fibers connecting a lobe of the brain with the thalamus.
+
+
+basemed37:
+    question:
+        - What does the prefix/suffix "-pathy" mean
+    answer:
+        - Disease or disease process.
+
+
+basemed38:
+    question:
+        - What does the prefix/suffix "-plasty" mean
+    answer:
+        - Surgical repair. e.g. sinuplasty - a procedure that ear, nose and throat surgeons may use for the treatment of blocked sinuses.
+
+
+basemed39:
+    question:
+        - What does the prefix/suffix "Poly-" mean
+    answer:
+        - Many.
+
+
+basemed40:
+    question:
+        - What does the prefix/suffix "Pseudo-" mean
+    answer:
+        - False or deceptive, usually in regard to appearance.
+
+
+basemed41:
+    question:
+        - What does the prefix/suffix "Retro-" mean
+    answer:
+        - Behind or backward.
+
+

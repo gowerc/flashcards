@@ -11,13 +11,13 @@ name: Deploy Content
 jobs:
     update-db:
         
-        env: # Or as an environment variable
+        env:
             SECRETS: ${{ secrets.SECRETS }}
             
         runs-on: [ubuntu-latest]
         
         container:
-            image: python:3.7
+            image: python:3.8
             
         steps:
             

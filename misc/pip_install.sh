@@ -16,6 +16,7 @@ python -m pip install google-oauth2
 python -m pip install flake8
 python -m pip install requests
 python -m pip install wheel
+python -m pip install pyyaml
 
 python -m pip freeze > requirements.txt
 

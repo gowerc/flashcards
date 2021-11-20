@@ -165,6 +165,8 @@ basemed24:
     answer:
         - Lack of or without. e.g  anaerobic  - without oxygen
 
+
+
 basemed25:
     question:
         - What does the prefix/suffix "-ation" mean
@@ -281,5 +283,16 @@ basemed41:
         - What does the prefix/suffix "Retro-" mean
     answer:
         - Behind or backward.
+
+
+
+basemed42:
+    question:
+        - What does the prefix/suffix "-megaly" mean
+    answer:
+        - An irregular enlargement of an organ of the body i.e. Splenomegaly meaning an enlarged spleen
+
+
+
 
 
